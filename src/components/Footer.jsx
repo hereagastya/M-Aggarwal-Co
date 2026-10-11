@@ -1,57 +1,84 @@
-const socials = ['IN', 'FB', 'X'];
+import { Link } from 'react-router-dom';
+import { firm, services, whatsappLink } from '../data/content';
+import { Brand, navLinks } from './Header';
+import { VineRule } from './Motifs';
+import Icon from './Icon';
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer style={{ background: 'var(--color-teal-dark-footer)' }} className="px-6 pb-24 pt-9 md:px-8 md:pb-12">
-      <div className="mx-auto max-w-6xl md:flex md:items-start md:justify-between md:gap-10">
-        <div className="md:max-w-sm">
-          <div className="mb-1.5 font-serif text-lg font-bold text-white md:text-xl">M. Aggarwal &amp; Co.</div>
-          <div className="mb-5 text-xs leading-relaxed text-white/55 md:text-sm">
-            204 Residency Road, Jaipur, Rajasthan
-            <br />
-            hello@maggarwalco.in &middot; +91 72985 12186
+    <footer className="bg-[var(--color-ink)] text-[var(--color-on-cobalt)]">
+      <VineRule tone="light" className="opacity-40" />
+      <div className="mx-auto max-w-6xl px-5 pb-32 pt-12 sm:px-8 lg:pb-12 lg:pt-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div className="col-span-2 lg:col-span-1">
+            <Brand light />
+            <p className="mt-5 max-w-xs text-[15px] leading-relaxed">
+              Tax, GST, audit and advisory for families and growing businesses in Jaipur, since {firm.since}.
+            </p>
           </div>
-          <div className="mb-5.5 flex gap-2.5 md:mb-0">
-            {socials.map((s) => (
-              <div
-                key={s}
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full border text-[10px] font-bold text-white"
-                style={{ background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.15)' }}
-              >
-                {s}
-              </div>
+
+          <FooterCol title="Firm">
+            {navLinks.map((l) => (
+              <FooterLink key={l.to} to={l.to}>{l.label}</FooterLink>
             ))}
+          </FooterCol>
+
+          <FooterCol title="Services">
+            {services.map((s) => (
+              <FooterLink key={s.code} to={`/services#${s.code}`}>{s.title.replace(' & Planning', '').replace(' & Returns', '')}</FooterLink>
+            ))}
+          </FooterCol>
+
+          <FooterCol title="Visit or write" className="col-span-2 lg:col-span-1">
+            <address className="not-italic text-[15px] leading-relaxed">
+              {firm.addressLines.map((l) => (
+                <span key={l} className="block">{l}</span>
+              ))}
+            </address>
+            <a href={firm.phoneHref} className="tnum mt-3 flex items-center gap-2 text-[15px] text-white hover:text-[var(--color-turq)]">
+              <Icon name="phone" className="h-4 w-4" /> {firm.phoneDisplay}
+            </a>
+            <a href={`mailto:${firm.email}`} className="flex items-center gap-2 text-[15px] text-white hover:text-[var(--color-turq)]">
+              <Icon name="mail" className="h-4 w-4" /> {firm.email}
+            </a>
+            <a href={whatsappLink()} target="_blank" rel="noopener" className="flex items-center gap-2 text-[15px] text-white hover:text-[var(--color-turq)]">
+              <Icon name="whatsapp" className="h-4 w-4" /> WhatsApp us
+            </a>
+          </FooterCol>
+        </div>
+
+        <div className="mt-12 border-t border-white/12 pt-6 text-[13px] leading-relaxed text-[var(--color-on-cobalt)]/80">
+          <p className="max-w-3xl">
+            Disclaimer: As per the rules of the Institute of Chartered Accountants of India, chartered accountants are
+            not permitted to solicit work or advertise. This website is meant for information only and does not
+            constitute an advertisement or professional advice.
+          </p>
+          <div className="mt-4 flex flex-col gap-1 sm:flex-row sm:justify-between">
+            <span>© {year} {firm.name}, Chartered Accountants</span>
+            <span className="tnum">ICAI Firm Registration No. {firm.frn}</span>
           </div>
         </div>
-        <div className="hidden gap-16 md:flex">
-          <FooterCol title="Company" items={['Home', 'Services', 'About', 'Contact']} />
-          <FooterCol
-            title="Services"
-            items={['Tax Filing', 'GST & Compliance', 'Auditing', 'Financial Advisory']}
-          />
-        </div>
-      </div>
-      <div
-        className="mx-auto mt-4 max-w-6xl border-t pt-4 text-[10.5px] text-white/40 md:mt-8 md:pt-6 md:text-xs"
-        style={{ borderColor: 'rgba(255,255,255,0.12)' }}
-      >
-        &copy; 2026 M. Aggarwal &amp; Co. &middot; Firm Regn. No. 0XXXXXN
       </div>
     </footer>
   );
 }
 
-function FooterCol({ title, items }) {
+function FooterCol({ title, children, className = '' }) {
   return (
-    <div>
-      <div className="mb-3 text-xs font-bold uppercase tracking-wide text-white/40">{title}</div>
-      <div className="flex flex-col gap-2.5">
-        {items.map((i) => (
-          <span key={i} className="text-sm text-white/70">
-            {i}
-          </span>
-        ))}
-      </div>
+    <div className={className}>
+      <h2 className="mb-4 font-[family-name:var(--font-sans)] text-[13px] font-semibold tracking-[0.08em] text-[var(--color-turq)] uppercase">
+        {title}
+      </h2>
+      <div className="flex flex-col gap-2.5">{children}</div>
     </div>
+  );
+}
+
+function FooterLink({ to, children }) {
+  return (
+    <Link to={to} className="text-[15px] text-white/90 hover:text-[var(--color-turq)]">
+      {children}
+    </Link>
   );
 }

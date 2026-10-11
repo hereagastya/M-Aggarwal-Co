@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T09:37:50.224Z",
+  "title": "Design System: M. Aggarwal & Co., Chartered Accountants",
+  "extensions": {
+    "colorMeta": {
+      "glaze": {
+        "role": "neutral",
+        "displayName": "Glaze White",
+        "canonical": "oklch(0.988 0.004 240)",
+        "hex": "#f9fbfe",
+        "tonalRamp": [
+          "#101213",
+          "#27292b",
+          "#404344",
+          "#616465",
+          "#848688",
+          "#a9abad",
+          "#cfd1d3",
+          "#eceff1"
+        ]
+      },
+      "wash": {
+        "role": "neutral",
+        "displayName": "Sky Wash",
+        "canonical": "oklch(0.958 0.02 232)",
+        "hex": "#e5f4fd",
+        "tonalRamp": [
+          "#081319",
+          "#1f2b31",
+          "#38444b",
+          "#58666d",
+          "#7b8990",
+          "#9fadb5",
+          "#c5d4dc",
+          "#e2f1fa"
+        ]
+      },
+      "turq": {
+        "role": "secondary",
+        "displayName": "Glaze Turquoise",
+        "canonical": "oklch(0.72 0.105 205)",
+        "hex": "#40b7c4",
+        "tonalRamp": [
+          "#001b27",
+          "#003541",
+          "#00515d",
+          "#007380",
+          "#0698a4",
+          "#48beca",
+          "#b3d9dd",
+          "#d1f7fb"
+        ]
+      },
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Kiln Cobalt",
+        "canonical": "oklch(0.43 0.17 264)",
+        "hex": "#1c45ab",
+        "tonalRamp": [
+          "#05005b",
+          "#00127a",
+          "#0f359b",
+          "#2f5bc2",
+          "#5080eb",
+          "#73a6ff",
+          "#c4d1ec",
+          "#e1efff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Cobalt Ink",
+        "canonical": "oklch(0.25 0.07 264)",
+        "hex": "#101f43",
+        "tonalRamp": [
+          "#030e30",
+          "#17274b",
+          "#2f4168",
+          "#4f638c",
+          "#7186b1",
+          "#94abd8",
+          "#c4d1ec",
+          "#e1efff"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "color-mix(in oklch, var(--color-ink) 80%, var(--color-glaze))",
+        "hex": "#344866",
+        "tonalRamp": [
+          "#03102a",
+          "#172945",
+          "#304361",
+          "#506484",
+          "#7287a9",
+          "#96accf",
+          "#c2d2ec",
+          "#dff0ff"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "color-mix(in oklch, var(--color-cobalt) 13%, var(--color-glaze))",
+        "hex": "#d5e6f3",
+        "tonalRamp": [
+          "#07131c",
+          "#1e2a35",
+          "#37444f",
+          "#576571",
+          "#798895",
+          "#9eadba",
+          "#c3d3e1",
+          "#e0f1ff"
+        ]
+      },
+      "wash-deep": {
+        "role": "neutral",
+        "displayName": "Deep Wash",
+        "canonical": "color-mix(in oklch, var(--color-cobalt) 9%, var(--color-wash))",
+        "hex": "#cde6f5",
+        "tonalRamp": [
+          "#02141e",
+          "#182c37",
+          "#314552",
+          "#516774",
+          "#738a98",
+          "#97afbd",
+          "#bdd5e4",
+          "#daf3ff"
+        ]
+      },
+      "turq-pale": {
+        "role": "secondary",
+        "displayName": "Pale Turquoise",
+        "canonical": "color-mix(in oklch, var(--color-turq) 30%, var(--color-glaze))",
+        "hex": "#cae5f3",
+        "tonalRamp": [
+          "#01141e",
+          "#162c36",
+          "#2f4651",
+          "#4f6773",
+          "#718b97",
+          "#95afbc",
+          "#bbd6e3",
+          "#d8f4ff"
+        ]
+      },
+      "on-cobalt": {
+        "role": "neutral",
+        "displayName": "On Cobalt",
+        "canonical": "color-mix(in oklch, var(--color-wash) 88%, var(--color-cobalt))",
+        "hex": "#c5e1f2",
+        "tonalRamp": [
+          "#001420",
+          "#152c39",
+          "#2e4654",
+          "#4e6776",
+          "#718a9a",
+          "#95afc0",
+          "#bad6e7",
+          "#d7f3ff"
+        ]
+      },
+      "cobalt-deep": {
+        "role": "primary",
+        "displayName": "Fired Cobalt",
+        "canonical": "color-mix(in oklch, var(--color-cobalt) 75%, var(--color-ink))",
+        "hex": "#193b90",
+        "tonalRamp": [
+          "#010050",
+          "#021b6e",
+          "#183a8e",
+          "#375eb5",
+          "#5882dd",
+          "#7ca8ff",
+          "#c4d1ec",
+          "#e1efff"
+        ]
+      },
+      "on-fill": {
+        "role": "neutral",
+        "displayName": "On Fill White",
+        "canonical": "#ffffff"
+      },
+      "error": {
+        "role": "state",
+        "displayName": "Error Red",
+        "canonical": "oklch(0.55 0.19 27)",
+        "hex": "#c9302d"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline (42/60/76px) and page heads (44/60/72px)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings, CTA band titles, due-card title."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "Testimonials (21-24px) and the founder quote (28-42px), always in the display face."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Stats, date-ring days and the days-left count; cobalt, tabular."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "List, station, FAQ and service titles in Figtree 600."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, 16px minimum."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Hero and section sublines."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Brand subline, footer column heads, date-ring months only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "button-glow-cobalt",
+        "value": "0 6px 16px -6px oklch(0.43 0.17 264 / 0.55)",
+        "purpose": "Under the Book button at rest."
+      },
+      {
+        "name": "button-glow-turq",
+        "value": "0 6px 16px -6px oklch(0.72 0.105 205 / 0.7)",
+        "purpose": "Under the Call button at rest."
+      },
+      {
+        "name": "plate-lift",
+        "value": "0 18px 40px -14px oklch(0.25 0.07 264 / 0.45)",
+        "purpose": "Hero portrait plate overlapping the rosette."
+      },
+      {
+        "name": "rosette-float",
+        "value": "drop-shadow(0 18px 30px oklch(0.43 0.17 264 / 0.18))",
+        "purpose": "Hero rosette only (filter)."
+      },
+      {
+        "name": "sheet",
+        "value": "0 -12px 40px -12px oklch(0.25 0.07 264 / 0.35)",
+        "purpose": "Booking sheet over its ink scrim."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All entrances, sheets and the FAQ expand."
+      },
+      {
+        "name": "rise",
+        "value": "opacity + translateY(18px), 0.9s ease-out, staggered 80ms",
+        "purpose": "Scroll entrance; content visible without JS."
+      },
+      {
+        "name": "sheet-up",
+        "value": "translateY(100%) to 0, 0.45s ease-out",
+        "purpose": "Mobile bottom sheets (menu, booking)."
+      },
+      {
+        "name": "pop-in",
+        "value": "opacity + translateY(12px) scale(0.98), 0.4s ease-out",
+        "purpose": "Booking dialog from 640px."
+      },
+      {
+        "name": "fade",
+        "value": "opacity, 0.3s ease",
+        "purpose": "Scrims and due-date list swaps."
+      },
+      {
+        "name": "state",
+        "value": "200ms; press scale 0.98",
+        "purpose": "Button color and press feedback."
+      },
+      {
+        "name": "potters-wheel",
+        "value": "rotate(scrollY * 0.09deg)",
+        "purpose": "Hero rosette turns with scroll; off under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Book Button",
+      "kind": "button",
+      "refersTo": "button-book",
+      "description": "Primary booking action; cobalt pill with a cobalt glow.",
+      "html": "<button class=\"ds-btn-book\">Book a free consultation <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-book{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border:0;border-radius:9999px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s;background:var(--color-cobalt);color:#fff;box-shadow:0 6px 16px -6px oklch(0.43 0.17 264/.55)}.ds-btn-book:hover{background:var(--color-cobalt-deep)}.ds-btn-book:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px}.ds-btn-book:active{transform:scale(.98)}"
+    },
+    {
+      "name": "Call Button",
+      "kind": "button",
+      "refersTo": "button-call",
+      "description": "Phone action; turquoise pill with ink text, equal weight to Book.",
+      "html": "<button class=\"ds-btn-call\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 4.5h3l1.5 4-2 1.3a10.5 10.5 0 0 0 6.7 6.7l1.3-2 4 1.5v3A2 2 0 0 1 17.4 21 15.5 15.5 0 0 1 3 6.6 2 2 0 0 1 5 4.5Z\"/></svg> Call 72985 12186</button>",
+      "css": ".ds-btn-call{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border:0;border-radius:9999px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s;background:var(--color-turq);color:var(--color-ink);font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -6px oklch(0.72 0.105 205/.7)}.ds-btn-call:hover{background:var(--color-turq-pale)}.ds-btn-call:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px}.ds-btn-call:active{transform:scale(.98)}"
+    },
+    {
+      "name": "WhatsApp Button",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "WhatsApp action; ink pill, equal weight to Book and Call.",
+      "html": "<button class=\"ds-btn-wa\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4.2 19.8l1.1-3.9A8.3 8.3 0 1 1 8.4 19z\"/></svg> WhatsApp</button>",
+      "css": ".ds-btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border:0;border-radius:9999px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s;background:var(--color-ink);color:#fff}.ds-btn-wa:hover{background:var(--color-cobalt-deep)}.ds-btn-wa:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px}.ds-btn-wa:active{transform:scale(.98)}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet alternative on light grounds.",
+      "html": "<button class=\"ds-btn-sec\">See all services</button>",
+      "css": ".ds-btn-sec{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border:0;border-radius:9999px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s;background:var(--color-glaze);color:var(--color-cobalt);box-shadow:inset 0 0 0 1px oklch(0.43 0.17 264/.3)}.ds-btn-sec:hover{background:var(--color-wash);box-shadow:inset 0 0 0 1px var(--color-cobalt)}.ds-btn-sec:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px}.ds-btn-sec:active{transform:scale(.98)}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "description": "Cobalt link with a turquoise underline and arrow.",
+      "html": "<a class=\"ds-link\" href=\"#\">Meet the team <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-sans);font-weight:600;color:var(--color-cobalt);text-decoration:underline;text-decoration-color:var(--color-turq);text-decoration-thickness:2px;text-underline-offset:6px}.ds-link svg{transition:transform .3s}.ds-link:hover{text-decoration-color:var(--color-cobalt)}.ds-link:hover svg{transform:translateX(2px)}.ds-link:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px;border-radius:6px}"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Pill tabs; active is solid ink.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip ds-chip-on\">Everyone</button><button class=\"ds-chip\">Individuals</button><button class=\"ds-chip\">Businesses</button></div>",
+      "css": ".ds-chips{display:flex;gap:8px}.ds-chip{min-height:44px;padding:0 20px;border:0;border-radius:9999px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;background:var(--color-glaze);color:var(--color-ink-soft);box-shadow:inset 0 0 0 1px var(--color-line);transition:color .2s,background-color .2s}.ds-chip:hover{color:var(--color-cobalt)}.ds-chip-on,.ds-chip-on:hover{background:var(--color-ink);color:#fff;box-shadow:none}.ds-chip:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px}"
+    },
+    {
+      "name": "Desktop Nav",
+      "kind": "nav",
+      "refersTo": "nav-link-active",
+      "description": "Pill links; active is a wash pill in cobalt.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-a ds-nav-on\" href=\"#\">Home</a><a class=\"ds-nav-a\" href=\"#\">Services</a><a class=\"ds-nav-a\" href=\"#\">About us</a><a class=\"ds-nav-a\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:4px}.ds-nav-a{padding:8px 16px;border-radius:9999px;font-family:var(--font-sans);font-size:15px;font-weight:500;color:var(--color-ink-soft);text-decoration:none;transition:color .2s}.ds-nav-a:hover{color:var(--color-cobalt)}.ds-nav-on{background:var(--color-wash);color:var(--color-cobalt)}.ds-nav-a:focus-visible{outline:2px solid var(--color-cobalt);outline-offset:3px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Glaze field with hairline ring; 2px cobalt on focus.",
+      "html": "<input class=\"ds-input\" placeholder=\"Your name\" />",
+      "css": ".ds-input{min-height:48px;width:100%;max-width:320px;padding:0 16px;border:0;border-radius:12px;background:var(--color-glaze);color:var(--color-ink);font-family:var(--font-sans);font-size:16px;box-shadow:inset 0 0 0 1px var(--color-line);outline:none;caret-color:var(--color-cobalt);transition:box-shadow .2s}.ds-input::placeholder{color:oklch(0.58 0.035 255)}.ds-input:focus{box-shadow:inset 0 0 0 2px var(--color-cobalt)}"
+    },
+    {
+      "name": "Portrait Plate",
+      "kind": "custom",
+      "description": "Round photo in a turquoise-rimmed plate with a cobalt inner ring.",
+      "html": "<div class=\"ds-plate\"><div class=\"ds-plate-in\"><div class=\"ds-plate-img\"></div></div></div>",
+      "css": ".ds-plate{width:160px;aspect-ratio:1;border-radius:50%;background:var(--color-turq);padding:10px}.ds-plate-in{width:100%;height:100%;box-sizing:border-box;border-radius:50%;background:var(--color-glaze);padding:3px;box-shadow:inset 0 0 0 1px var(--color-cobalt)}.ds-plate-img{width:100%;height:100%;border-radius:50%;background:var(--color-wash-deep)}"
+    },
+    {
+      "name": "Due Date Row",
+      "kind": "custom",
+      "description": "Hairline row led by a turquoise date ring with a Young Serif day numeral.",
+      "html": "<div class=\"ds-due\"><div class=\"ds-due-ring\"><span class=\"ds-due-d\">15</span><span class=\"ds-due-m\">Dec</span></div><div><p class=\"ds-due-t\">Advance tax, third instalment</p><p class=\"ds-due-s\"><b>in 6 days</b></p></div></div>",
+      "css": ".ds-due{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--color-line);font-family:var(--font-sans);max-width:420px}.ds-due-ring{width:56px;height:56px;flex-shrink:0;border-radius:50%;background:var(--color-glaze);box-shadow:0 0 0 2px var(--color-turq);display:flex;flex-direction:column;align-items:center;justify-content:center}.ds-due-d{font-family:var(--font-display);font-size:20px;line-height:1;color:var(--color-cobalt);font-variant-numeric:tabular-nums}.ds-due-m{margin-top:2px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--color-ink-soft)}.ds-due-t{margin:0;font-weight:600;color:var(--color-ink)}.ds-due-s{margin:2px 0 0;font-size:14px;color:var(--color-ink-soft)}.ds-due-s b{color:var(--color-cobalt)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Blue Pottery Plate",
+    "overview": "The site is a piece of Jaipur blue pottery: a cool white glaze ground, cobalt laid on in whole bands, turquoise as the single secondary, and hand-painted motifs (a rosette plate, a vine rim, an eight-petal mark) drawn in cobalt line with a faint brush wobble. Calm is the feature. Nothing is boxed into card grids; content rides directly on bands of glaze, sky wash, cobalt and ink, separated by thin hairlines or a painted vine.\n\nDensity is relaxed and mobile-first. Sections breathe (64 to 96px of vertical padding), lists are hairline-ruled rather than carded, and the few filled containers (the next-due-date card, the contact sit-down card, the booking sheet) are soft 28px-cornered slabs of a single tone. Portraits always sit in a round plate with a turquoise rim; the one place photo (the office interior) is a 28px-cornered rectangle. The display face is Young Serif, a soft, heavy-bellied old-style serif that reads as painted lettering; Figtree carries everything functional.\n\nThe world refuses the navy-gradient-plus-gold finance hero: no gradients, no gold, no cream.",
+    "keyCharacteristics": [
+      "Five pottery tones, with every secondary token a fixed `color-mix()` of them, never a new hue.",
+      "Bands, not boxes: sections change ground color; lists are ruled with hairlines.",
+      "Painted motifs (rosette, vine rule, petal mark) are the only ornament; they are generated SVG with a brush displacement filter.",
+      "Round everything: pill buttons, round plates, round station markers, round icon wells.",
+      "Three contact actions (Book, Call, WhatsApp) carry equal visual weight, each with its own fill."
+    ],
+    "rules": [
+      {
+        "name": "The Five Tones Rule",
+        "body": "Glaze, wash, turquoise, cobalt, ink. Any further color is a `color-mix(in oklch, ...)` of those five, defined once as a token. No gradients anywhere.",
+        "section": "colors"
+      },
+      {
+        "name": "The Equal Voices Rule",
+        "body": "Book is cobalt, Call is turquoise with ink text, WhatsApp is ink. On light grounds they keep these fills everywhere (hero, mobile menu, action dock), at the same height and shape. On a cobalt band, Book inverts to a glaze pill so it stays visible.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Weight Serif Rule",
+        "body": "Young Serif is set at 400 only; emphasis comes from size and cobalt color, never bold or italic.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Every phone number, date, count and registration number uses tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ground Not Shadow Rule",
+        "body": "To separate content, change the band color or draw a hairline. Shadows are reserved for elements that physically overlap something.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** derive any new tone with `color-mix(in oklch, ...)` from glaze, wash, turquoise, cobalt and ink, and give it a token name.",
+      "**Do** separate sections by changing the band ground (glaze, wash, cobalt, ink) and rule lists with the hairline.",
+      "**Do** keep Book (cobalt), Call (turquoise, ink text) and WhatsApp (ink) at equal size wherever contact actions appear, and keep the mobile action dock on every page.",
+      "**Do** put every portrait of a person in a round turquoise-rimmed plate.",
+      "**Do** set quotes, numerals and headings in Young Serif 400, with tabular figures for numbers.",
+      "**Do** keep tap targets at 44px or more and running text at 16px or more.",
+      "**Do** let entrances rise 18px and fade over 0.9s on `cubic-bezier(0.16, 1, 0.3, 1)`, and drop all motion under reduced motion."
+    ],
+    "donts": [
+      "**Don't** use gradients, gold, or a cream ground.",
+      "**Don't** introduce a hue outside the five tones; the only exception is the form error red.",
+      "**Don't** wrap services, testimonials, credentials or FAQs in boxed cards.",
+      "**Don't** use gray or hard-offset shadows; shadows are soft and cobalt- or ink-tinted, and only under overlapping elements.",
+      "**Don't** set Young Serif in bold or italic.",
+      "**Don't** add small uppercase eyebrows or kickers above headlines; uppercase tracked labels are limited to the brand subline, footer column heads and date-ring months.",
+      "**Don't** show any photo with square corners; place photos take 28px corners."
+    ]
+  }
+}

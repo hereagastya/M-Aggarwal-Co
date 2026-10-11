@@ -1,322 +1,216 @@
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useBooking } from '../context/BookingContext';
-import { useNavigate } from 'react-router-dom';
-import Reveal from '../components/Reveal';
-import ImagePlaceholder from '../components/ImagePlaceholder';
-import { useReveal, useCountUp } from '../hooks/useReveal';
-import { services, processSteps, testimonials, badges, stats } from '../data/content';
-import officeInterior from '../assets/images/office-interior.jpg';
+import { firm, services, processSteps, testimonials, stats } from '../data/content';
+import { Plate, Rosette, VineRule } from '../components/Motifs';
+import Icon from '../components/Icon';
+import DueDates from '../components/DueDates';
+import { Button, Container, Rise, TextLink } from '../components/ui';
+import { CtaBand, Credentials, SectionHeading, Stations } from '../components/Sections';
 import founderPortrait from '../assets/images/founder-portrait.jpg';
+
+// The plate turns like it is on the potter's wheel as you scroll.
+function useWheel() {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (ref.current) ref.current.style.transform = `rotate(${window.scrollY * 0.09}deg)`;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+  }, []);
+  return ref;
+}
 
 export default function Home() {
   const { openBooking } = useBooking();
-  const navigate = useNavigate();
-  const [statsRef, statsVisible] = useReveal();
+  const wheel = useWheel();
 
   return (
-    <div>
+    <>
       {/* HERO */}
-      <div
-        className="relative min-h-[560px] overflow-hidden md:min-h-[640px] lg:min-h-[720px]"
-        style={{
-          background:
-            'linear-gradient(135deg, var(--color-navy) 0%, oklch(0.23 0.08 215) 45%, var(--color-teal-deep) 100%)',
-        }}
-      >
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{ mixBlendMode: 'luminosity' }}
-        >
-          <ImagePlaceholder shape="rect" src={officeInterior} alt="M. Aggarwal & Co. office" className="h-full w-full" />
-        </div>
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(10,20,25,0.25) 0%, rgba(10,20,25,0.55) 60%, rgba(10,20,25,0.92) 100%)',
-          }}
-        />
-        <div
-          className="animate-blob-a absolute -right-[70px] -top-[70px] h-65 w-65 rounded-full"
-          style={{ background: 'radial-gradient(circle, oklch(0.78 0.15 75 / 0.4), transparent 70%)', filter: 'blur(6px)' }}
-        />
-        <div
-          className="animate-blob-b absolute -left-20 bottom-30 h-55 w-55 rounded-full"
-          style={{ background: 'radial-gradient(circle, oklch(0.72 0.16 155 / 0.35), transparent 70%)', filter: 'blur(6px)' }}
-        />
-
-        <div className="relative mx-auto max-w-6xl px-6 pt-18 md:px-8 md:pt-28 lg:pt-32">
-          <div className="md:max-w-xl">
-            <div
-              className="mb-5.5 inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5"
-              style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(14px)', borderColor: 'rgba(255,255,255,0.22)' }}
-            >
-              <div className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--color-gold)' }} />
-              <div className="text-[11.5px] font-semibold text-white/90">13 years &middot; 500+ clients trust us</div>
+      <section className="relative overflow-hidden">
+        <Container className="grid items-center gap-y-8 pb-12 pt-4 sm:pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-x-12 lg:pb-24 lg:pt-16">
+          <div className="relative h-[228px] sm:h-[300px] lg:order-2 lg:h-[540px]">
+            <div className="absolute -right-16 -top-2 h-[236px] w-[236px] sm:right-0 sm:h-[300px] sm:w-[300px] lg:right-[-6%] lg:top-0 lg:h-[500px] lg:w-[500px]">
+              <div ref={wheel} className="h-full w-full will-change-transform">
+                <Rosette className="h-full w-full drop-shadow-[0_18px_30px_oklch(0.43_0.17_264/0.18)]" />
+              </div>
             </div>
-            <div className="font-serif mb-3.5 text-[38px] font-bold leading-[1.08] text-white md:text-5xl lg:text-6xl">
-              Financial clarity,
-              <br />
-              handled with care.
-            </div>
-            <div className="mb-6.5 max-w-[290px] text-sm leading-relaxed text-white/75 md:max-w-md md:text-base">
-              M. Aggarwal &amp; Co. — chartered accountants for tax, GST, audit and the money decisions in between.
-            </div>
-            <div className="mb-12 flex gap-2.5 md:mb-20">
-              <button
-                onClick={() => openBooking(null)}
-                className="cursor-pointer rounded-xl border-none px-5 py-3.5 text-sm font-bold shadow-lg md:px-7 md:py-4 md:text-base"
-                style={{
-                  background: 'linear-gradient(135deg, var(--color-gold), var(--color-gold-deep))',
-                  color: 'var(--color-gold-text)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-                }}
-              >
-                Book Consultation
-              </button>
-              <button
-                onClick={() => navigate('/services')}
-                className="cursor-pointer rounded-xl border px-4.5 py-3.5 text-sm font-semibold text-white md:px-6 md:py-4 md:text-base"
-                style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(14px)', borderColor: 'rgba(255,255,255,0.3)' }}
-              >
-                View Services
-              </button>
-            </div>
+            <figure className="absolute left-0 top-12 w-[168px] sm:left-6 sm:w-[210px] lg:bottom-4 lg:left-0 lg:top-auto lg:w-[290px]">
+              <Plate
+                src={founderPortrait}
+                alt="CA M. Aggarwal, founder of M. Aggarwal & Co."
+                position="center 22%"
+                size="lg"
+                loading="eager"
+                className="shadow-[0_18px_40px_-14px_oklch(0.25_0.07_264/0.45)]"
+              />
+              <figcaption className="mt-3 hidden text-sm text-[var(--color-ink-soft)] lg:block">
+                <span className="font-semibold text-[var(--color-ink)]">CA M. Aggarwal</span>, FCA · Founder
+              </figcaption>
+            </figure>
           </div>
-        </div>
-        <div className="absolute bottom-3.5 left-0 right-0 flex justify-center md:hidden">
-          <div className="animate-bob h-1.5 w-1.5 rounded-full bg-white" />
-        </div>
-      </div>
 
-      {/* STATS */}
-      <div ref={statsRef} className="relative z-2 -mt-9 px-5 md:mt-0 md:px-8">
-        <div
-          className="reveal mx-auto grid max-w-6xl grid-cols-2 gap-2.5 md:grid-cols-4 md:gap-5"
-          style={{
-            opacity: statsVisible ? 1 : 0,
-            transform: statsVisible ? 'translateY(0)' : 'translateY(22px)',
-            transition: 'opacity 0.7s ease, transform 0.7s ease',
-          }}
-        >
-          {stats.map((s) => (
-            <StatCard key={s.key} stat={s} active={statsVisible} />
-          ))}
-        </div>
-      </div>
+          <div className="lg:order-1">
+            <h1 className="text-[42px] leading-[1.06] sm:text-6xl lg:text-[76px]">
+              Financial clarity, <span className="text-[var(--color-cobalt)]">handled with care.</span>
+            </h1>
+            <p className="mt-5 max-w-lg text-[17px] leading-relaxed text-[var(--color-ink-soft)] sm:text-lg">
+              Chartered accountants in Jaipur since {firm.since}, for income tax, GST, audit and the money decisions in between.
+              Plain answers, on time, every time.
+            </p>
+            <div className="mt-8 grid gap-3 sm:flex">
+              <Button onClick={() => openBooking(null)}>
+                Book a free consultation
+                <Icon name="arrow" className="h-4.5 w-4.5" />
+              </Button>
+              <Button variant="call" href={firm.phoneHref}>
+                <Icon name="phone" className="h-4.5 w-4.5" />
+                <span className="tnum">Call {firm.phoneDisplay.replace('+91 ', '')}</span>
+              </Button>
+            </div>
+            <p className="tnum mt-6 flex items-center gap-2 text-sm text-[var(--color-ink-soft)]">
+              <Icon name="shield" className="h-4.5 w-4.5 shrink-0 text-[var(--color-cobalt)]" />
+              ICAI member firm · FRN {firm.frn} · Peer reviewed
+            </p>
+          </div>
+        </Container>
 
-      {/* SERVICES SHOWCASE */}
-      <div className="mx-auto max-w-6xl px-6 pb-2 pt-11 md:px-8 md:pt-20">
-        <Reveal>
-          <SectionKicker>What we do</SectionKicker>
-          <SectionTitle>Six ways we look after your money</SectionTitle>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
-            {services.map((svc, i) => (
-              <Reveal
-                key={svc.code}
-                delay={i * 70}
-                onClick={() => navigate('/services')}
-                className="cursor-pointer rounded-2xl border bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg md:p-6"
-                style={{ borderColor: 'var(--color-cream-border-light)' }}
-              >
-                <div
-                  className="mb-2.5 flex h-9 w-9 items-center justify-center rounded-[10px] text-[10px] font-bold tracking-wide text-white md:mb-4 md:h-11 md:w-11 md:text-xs"
-                  style={{ background: 'linear-gradient(135deg, var(--color-teal), var(--color-teal-mid))' }}
-                >
-                  {svc.code}
-                </div>
-                <div className="mb-1.5 text-[13.5px] font-bold leading-tight text-[var(--color-ink)] md:text-base">
-                  {svc.title}
-                </div>
-                <div className="text-[11.5px] leading-snug text-[var(--color-muted)] md:text-sm">{svc.short}</div>
-              </Reveal>
+        <Container>
+          <p className="grid grid-cols-2 gap-x-5 gap-y-4 border-t border-[var(--color-line)] py-6 text-[15px] leading-snug text-[var(--color-ink-soft)] lg:flex lg:flex-wrap lg:gap-x-6 lg:py-7 lg:text-[17px] lg:leading-[2.1]">
+            {stats.map((s, i) => (
+              <span key={s.label} className="flex flex-col lg:inline-flex lg:flex-row lg:items-baseline lg:whitespace-nowrap">
+                <span className="tnum font-[family-name:var(--font-display)] text-[28px] leading-tight text-[var(--color-cobalt)] lg:mr-1.5 lg:text-2xl">{s.value}</span>
+                {s.label}
+                {i < stats.length - 1 && <span className="ml-6 hidden h-1.5 w-1.5 self-center lg:inline-block rounded-full bg-[var(--color-turq)]" aria-hidden="true" />}
+              </span>
             ))}
+          </p>
+        </Container>
+      </section>
+
+      {/* DUE DATES: the live compliance calendar */}
+      <section id="due-dates" className="bg-[var(--color-wash)]">
+        <VineRule className="opacity-60" />
+        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeading
+              title="What’s due next"
+              sub="Upcoming income tax, GST and payroll deadlines, worked out live from today’s date. Add any of them to your phone’s calendar with one tap."
+            />
           </div>
-        </Reveal>
-      </div>
+          <DueDates />
+        </Container>
+      </section>
+
+      {/* SERVICES */}
+      <section className="relative overflow-hidden bg-[var(--color-cobalt)]">
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <SectionHeading
+            light
+            title="Six ways we look after your money"
+            sub="One firm for the whole picture, so nothing falls between two advisers."
+          />
+          <ul className="mt-10 grid border-t border-white/15 lg:grid-cols-2 lg:gap-x-12">
+            {services.map((s) => (
+              <li key={s.code} className="border-b border-white/15">
+                <Link to={`/services#${s.code}`} className="group flex items-center gap-4 py-5 sm:py-6">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--color-turq)] text-[var(--color-ink)] transition-transform duration-300 group-hover:rotate-[-8deg]">
+                    <Icon name={s.icon} className="h-5.5 w-5.5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[17px] font-semibold leading-snug text-white">{s.title}</span>
+                    <span className="mt-0.5 block text-[15px] leading-snug text-[var(--color-on-cobalt)]">{s.short}</span>
+                  </span>
+                  <Icon name="chevron" className="h-5 w-5 shrink-0 text-[var(--color-on-cobalt)] transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
 
       {/* PROCESS */}
-      <div className="mt-11 px-6 pb-2 pt-11 md:mt-16 md:px-8 md:pt-20" style={{ background: 'var(--color-cream-alt)' }}>
-        <Reveal className="mx-auto max-w-4xl">
-          <SectionKicker>How it works</SectionKicker>
-          <SectionTitle>From first call to filed</SectionTitle>
-          <div className="md:grid md:grid-cols-2 md:gap-x-10">
-            {processSteps.map((step) => (
-              <div key={step.num} className="flex gap-4">
-                <div className="flex flex-shrink-0 flex-col items-center">
-                  <div
-                    className="flex h-9 w-9 items-center justify-center rounded-full text-[13px] font-bold text-white md:h-11 md:w-11 md:text-base"
-                    style={{ background: 'linear-gradient(135deg, var(--color-teal), var(--color-teal-mid))' }}
-                  >
-                    {step.num}
-                  </div>
-                  <div
-                    className="w-0.5 flex-1 md:hidden"
-                    style={{ background: 'linear-gradient(180deg, var(--color-teal-mid), transparent)' }}
-                  />
-                </div>
-                <div className="pb-6.5 md:pb-10">
-                  <div className="mb-1 text-[14.5px] font-bold text-[var(--color-ink)] md:text-lg">{step.title}</div>
-                  <div className="text-[12.5px] leading-relaxed text-[var(--color-muted-2)] md:text-sm">{step.desc}</div>
-                </div>
-              </div>
-            ))}
+      <section>
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <SectionHeading title="From first call to filed" sub="A simple, predictable way of working. You always know what happens next and what it costs." />
+          <div className="mt-10 lg:mt-14">
+            <Stations steps={processSteps} />
           </div>
-        </Reveal>
-      </div>
+        </Container>
+      </section>
 
-      {/* STORY BREAK */}
-      <Reveal className="relative mt-1.5 h-75 md:h-96">
-        <ImagePlaceholder
-          shape="rect"
-          src={founderPortrait}
-          alt="M. Aggarwal, Founder & FCA"
-          objectPosition="center 15%"
-          className="absolute inset-0 h-full w-full"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(180deg, rgba(12,24,24,0.15) 0%, rgba(10,20,20,0.85) 100%)' }}
-        />
-        <div
-          className="absolute -bottom-7 left-5 right-5 rounded-[18px] border p-5 md:left-1/2 md:right-auto md:w-[560px] md:-translate-x-1/2 md:p-8"
-          style={{
-            background: 'rgba(255,255,255,0.85)',
-            backdropFilter: 'blur(18px)',
-            borderColor: 'rgba(255,255,255,0.7)',
-            boxShadow: '0 16px 40px rgba(20,40,40,0.15)',
-          }}
-        >
-          <div className="font-serif mb-2.5 text-[15.5px] italic leading-relaxed text-[var(--color-ink-soft)] md:text-xl">
-            &ldquo;We built this firm so no client ever has to feel lost in their own finances.&rdquo;
-          </div>
-          <div className="text-xs font-bold text-[var(--color-primary)] md:text-sm">M. Aggarwal, Founder &amp; FCA</div>
-        </div>
-      </Reveal>
+      {/* FOUNDER */}
+      <section className="bg-[var(--color-wash)]">
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+          <Rise className="mx-auto w-[240px] sm:w-[300px] lg:w-[380px]">
+            <Plate src={founderPortrait} alt="CA M. Aggarwal" position="center 22%" size="lg" />
+          </Rise>
+          <figure>
+            <Icon name="quote" className="h-10 w-10 text-[var(--color-turq)]" fill="currentColor" strokeWidth={0} />
+            <blockquote className="mt-4 font-[family-name:var(--font-display)] text-[28px] leading-[1.25] sm:text-4xl lg:text-[42px]">
+              We built this firm so that no client ever has to feel lost in their own finances.
+            </blockquote>
+            <figcaption className="mt-6">
+              <span className="block font-semibold">CA M. Aggarwal, FCA</span>
+              <span className="block text-[15px] text-[var(--color-ink-soft)]">Founder &amp; Managing Partner</span>
+            </figcaption>
+            <TextLink to="/about" className="mt-6">Meet the team</TextLink>
+          </figure>
+        </Container>
+      </section>
 
       {/* TESTIMONIALS */}
-      <div className="pt-20 pb-2 md:pt-28">
-        <Reveal>
-          <div className="mx-auto mb-4 max-w-6xl px-6 md:px-8">
-            <SectionKicker>Testimonials</SectionKicker>
-            <SectionTitle>What clients say</SectionTitle>
+      <section>
+        <Container className="pt-16 sm:pt-20 lg:pt-24">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading title="What clients say" />
+            <p className="flex items-center gap-2 text-[15px] text-[var(--color-ink-soft)]">
+              <span className="flex text-[var(--color-cobalt)]" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Icon key={i} name="star" className="h-4.5 w-4.5" fill="currentColor" strokeWidth={1} />
+                ))}
+              </span>
+              <span><strong className="text-[var(--color-ink)]">4.9</strong> average client rating</span>
+            </p>
           </div>
-          <div className="flex gap-3.5 overflow-x-auto px-6 pb-2 md:mx-auto md:max-w-6xl md:px-8">
-            {testimonials.map((t) => (
-              <div
-                key={t.id}
-                className="flex-none w-62.5 rounded-[18px] border bg-white p-5 shadow-sm md:w-auto md:flex-1 md:p-7"
-                style={{ borderColor: 'var(--color-cream-border-light)' }}
-              >
-                <div className="mb-2.5 text-sm tracking-widest" style={{ color: 'var(--color-gold)' }}>
-                  &#9733;&#9733;&#9733;&#9733;&#9733;
-                </div>
-                <div className="font-serif mb-4 text-[13.5px] italic leading-relaxed text-[var(--color-body)] md:text-base">
-                  &ldquo;{t.quote}&rdquo;
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <ImagePlaceholder shape="circle" className="h-9 w-9 flex-shrink-0" />
-                  <div>
-                    <div className="text-[12.5px] font-bold text-[var(--color-ink)] md:text-sm">{t.name}</div>
-                    <div className="text-[11px] text-[var(--color-muted)]">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-
-      {/* BADGES MARQUEE */}
-      <Reveal className="overflow-hidden py-9">
-        <div className="flex w-max gap-3 animate-marquee">
-          {[...badges, ...badges].map((b, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-[11.5px] font-bold"
-              style={{ background: 'var(--color-badge)', color: 'var(--color-badge-text)' }}
+        </Container>
+        <div className="scroll-x mt-8 flex snap-x snap-mandatory scroll-px-5 gap-8 overflow-x-auto px-5 pb-2 sm:px-8 lg:mx-auto lg:grid lg:max-w-6xl lg:grid-cols-2 lg:gap-x-16 lg:gap-y-14 lg:overflow-visible">
+          {testimonials.map((t) => (
+            <figure
+              key={t.id}
+              className="flex w-[82%] max-w-[360px] shrink-0 snap-start flex-col lg:w-auto lg:max-w-none"
             >
-              {b}
-            </div>
+              <VineRule className="opacity-80" />
+              <blockquote className="mt-5 flex-1 font-[family-name:var(--font-display)] text-[21px] leading-[1.4] lg:text-2xl">“{t.quote}”</blockquote>
+              <figcaption className="mt-6 flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-cobalt)] font-[family-name:var(--font-display)] text-white" aria-hidden="true">
+                  {t.name.split(' ').map((w) => w[0]).join('')}
+                </span>
+                <span>
+                  <span className="block font-semibold leading-tight">{t.name}</span>
+                  <span className="block text-sm text-[var(--color-ink-soft)]">{t.role}</span>
+                </span>
+              </figcaption>
+            </figure>
           ))}
         </div>
-      </Reveal>
+      </section>
 
-      {/* CTA */}
-      <Reveal className="px-6 pb-8 pt-2 md:mx-auto md:max-w-6xl md:px-8 md:pb-16">
-        <div
-          className="relative overflow-hidden rounded-[20px] p-7 md:flex md:items-center md:justify-between md:p-14"
-          style={{ background: 'linear-gradient(135deg, var(--color-navy), var(--color-teal-deep))' }}
-        >
-          <div
-            className="absolute -right-7 -top-7 h-32.5 w-32.5 rounded-full"
-            style={{ background: 'radial-gradient(circle, oklch(0.78 0.15 75 / 0.35), transparent 70%)' }}
-          />
-          <div className="relative md:max-w-md">
-            <div className="font-serif mb-1.5 text-xl font-bold text-white md:text-3xl">
-              Free 20-minute consultation
-            </div>
-            <div className="mb-4.5 text-[13px] leading-relaxed text-white/72 md:mb-0 md:text-base">
-              Talk through your tax or compliance questions, no obligation.
-            </div>
-          </div>
-          <div className="relative flex gap-2.5 md:flex-shrink-0">
-            <button
-              onClick={() => openBooking(null)}
-              className="cursor-pointer rounded-[11px] border-none px-5 py-3.5 text-[13.5px] font-bold md:px-7 md:py-4 md:text-base"
-              style={{ background: 'linear-gradient(135deg, var(--color-gold), var(--color-gold-deep))', color: 'var(--color-gold-text)' }}
-            >
-              Book Now
-            </button>
-            <button
-              onClick={() => navigate('/contact')}
-              className="cursor-pointer rounded-[11px] border px-4.5 py-3.5 text-[13.5px] font-semibold text-white md:px-6 md:py-4 md:text-base"
-              style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', borderColor: 'rgba(255,255,255,0.3)' }}
-            >
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </Reveal>
-    </div>
-  );
-}
+      {/* CREDENTIALS */}
+      <section>
+        <Container className="grid gap-8 py-16 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+          <SectionHeading title="Qualified, registered, reviewed" sub="The checks that matter when you hand someone your financial records." />
+          <Credentials />
+        </Container>
+      </section>
 
-function StatCard({ stat, active }) {
-  const value = useCountUp(stat.target, active, 1400, stat.decimals || 0);
-  return (
-    <div
-      className="rounded-2xl border p-4 md:p-6"
-      style={{
-        background: 'rgba(255,255,255,0.75)',
-        backdropFilter: 'blur(16px)',
-        borderColor: 'rgba(255,255,255,0.7)',
-        boxShadow: '0 10px 30px rgba(20,40,40,0.1)',
-      }}
-    >
-      <div className="font-serif text-[23px] font-bold text-[var(--color-primary)] md:text-4xl">
-        {value}
-        {stat.suffix}
-      </div>
-      <div className="mt-0.5 text-[11px] text-[var(--color-muted-2)] md:text-sm">{stat.label}</div>
-    </div>
-  );
-}
-
-function SectionKicker({ children }) {
-  return (
-    <div
-      className="mb-2 text-[11.5px] font-bold uppercase tracking-[1.2px] md:text-xs"
-      style={{ color: 'var(--color-accent-green)' }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function SectionTitle({ children }) {
-  return (
-    <div className="font-serif mb-4.5 text-[23px] font-bold text-[var(--color-ink)] md:mb-9 md:text-4xl">
-      {children}
-    </div>
+      <CtaBand />
+    </>
   );
 }
